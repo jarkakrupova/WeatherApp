@@ -82,7 +82,7 @@ namespace WeatherApp {
 			textViewHumidity.Text = weatherModel.current.humidity.ToString();
 			textViewLocalTime.Text = weatherModel.location.localtime;
 			textViewTemperature.Text = weatherModel.current.temperature.ToString();
-			textViewWind.Text = $"{weatherModel.current.wind_speed} km//h {weatherModel.current.wind_dir}";
+			textViewWind.Text = $"{weatherModel.current.wind_speed} km/h {weatherModel.current.wind_dir}";
 			imageViewPicture.SetImageBitmap(GetImageBitmapFromUrl(weatherModel.current.weather_icons[0]));
 			sunriseSunsetService.GetSunriseSunsetInfoAsync(weatherModel.location.lat, weatherModel.location.lon);
 		}
