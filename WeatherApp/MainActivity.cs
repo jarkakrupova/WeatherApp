@@ -5,10 +5,12 @@ using Android.Runtime;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using System;
+using Shared;
+using Android.Graphics;
 
 namespace WeatherApp {
 	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-	public class MainActivity : AppCompatActivity {
+	public class MainActivity : AppCompatActivity, IWeatherView, ISunriseSunsetView {
 		ImageView imageViewPicture;
 		TextView textViewCity;
 		TextView textViewWeather;
@@ -17,6 +19,10 @@ namespace WeatherApp {
 		TextView textViewHumidity;
 		TextView textViewLocalTime;
 		Button buttonChange;
+		WeatherService weatherService;
+		SunriseSunsetService sunriseSunsetService;
+		TextView textViewSunrise;
+		TextView textViewSunset;
 
 		protected override void OnCreate(Bundle savedInstanceState) {
 			base.OnCreate(savedInstanceState);
@@ -40,6 +46,7 @@ namespace WeatherApp {
 			if (requestCode == 1 && resultCode == Result.Ok) {
 				string city = data.GetStringExtra("City");
 				textViewCity.Text = city;
+				weatherService.GetWeatherForCityAsync(city);
 			}
 		}
 
@@ -52,6 +59,37 @@ namespace WeatherApp {
 			textViewHumidity = FindViewById<TextView>(Resource.Id.textViewHumidity);
 			textViewLocalTime = FindViewById<TextView>(Resource.Id.textViewLocalTime);
 			buttonChange = FindViewById<Button>(Resource.Id.buttonChange);
+			weatherService = new WeatherService(this);
+			sunriseSunsetService = new SunriseSunsetService(this);
+			textViewSunrise = FindViewById<TextView>(Resource.Id.textViewSunrise);
+			textViewSunset = FindViewById<TextView>(Resource.Id.textViewSunset);
+		}
+
+		private Bitmap GetImageBitmapFromUrl(string url) {
+			Bitmap imageBitmap = null;
+			using (var webClient = new System.Net.WebClient()) {
+				var imageBytes = webClient.DownloadData(url);
+				if (imageBytes != null && imageBytes.Length > 0) {
+					imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+				}
+			}
+			return imageBitmap;
+		}
+
+		public void SetWeatherData(WeatherModel weatherModel) {
+			textViewCity.Text = weatherModel.location.name;
+			textViewWeather.Text = weatherModel.current.weather_descriptions[0];
+			textViewHumidity.Text = weatherModel.current.humidity.ToString();
+			textViewLocalTime.Text = weatherModel.location.localtime;
+			textViewTemperature.Text = weatherModel.current.temperature.ToString();
+			textViewWind.Text = $"{weatherModel.current.wind_speed} km//h {weatherModel.current.wind_dir}";
+			imageViewPicture.SetImageBitmap(GetImageBitmapFromUrl(weatherModel.current.weather_icons[0]));
+			sunriseSunsetService.GetSunriseSunsetInfoAsync(weatherModel.location.lat, weatherModel.location.lon);
+		}
+
+		public void SetSunriseSunsetView(SunriseSunsetModel sunriseSunsetModel) {
+			textViewSunrise.Text = sunriseSunsetModel.results.sunrise;
+			textViewSunset.Text = sunriseSunsetModel.results.sunset;
 		}
 	}
 }

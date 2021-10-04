@@ -8,8 +8,9 @@
 	android:orientation="vertical">
 	<ImageView
 		android:src="@android:drawable/ic_menu_gallery"
-		android:layout_width="60dp"
-		android:layout_height="60dp"
+		android:padding="5dp"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
 		android:layout_gravity="center_horizontal"
 		android:id="@+id/imageViewPicture" />
 	<TextView
@@ -133,6 +134,52 @@
 			android:textSize="25sp"
 			android:layout_marginRight="80dp"
 			android:id="@+id/textViewLocalTime"
+			android:layout_alignParentRight="true" />
+	</RelativeLayout>
+		<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		android:orientation="horizontal">
+		<TextView
+			android:text="Sunrise:"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:textSize="25sp"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="30dp"/>
+		<TextView
+			android:text="Text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="25sp"
+			android:layout_marginRight="80dp"
+			android:id="@+id/textViewSunrise"
+			android:layout_alignParentRight="true" />
+	</RelativeLayout>
+		<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		android:orientation="horizontal">
+		<TextView
+			android:text="Sunset:"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:textSize="25sp"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="30dp"/>
+		<TextView
+			android:text="Text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="25sp"
+			android:layout_marginRight="80dp"
+			android:id="@+id/textViewSunset"
 			android:layout_alignParentRight="true" />
 	</RelativeLayout>
 	<Button

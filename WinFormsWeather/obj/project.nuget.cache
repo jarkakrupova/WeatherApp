@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "p0OS1ZagVep3D0pISIcyo+dznB4Tzenj3HLGvk3Ub8lkBCFkEzFVrBs8CDZ4eTeMUuyyCewZc077ruO5yV6Rtw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jarkr\\source\\repos\\WeatherApp\\WinFormsWeather\\WinFormsWeather.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jarkr\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

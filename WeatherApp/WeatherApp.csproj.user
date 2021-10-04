@@ -4,6 +4,6 @@
     <SelectedDevice>Google PIXEL 2 XL</SelectedDevice>
     <ActiveDebugProfile>Google PIXEL 2 XL</ActiveDebugProfile>
     <AndroidDesignerPreferredTheme>AppTheme</AndroidDesignerPreferredTheme>
-    <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
+    <AndroidDesignerPreferredDevice>pixel_2_xl</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>
